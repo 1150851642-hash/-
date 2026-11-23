@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: fieldnote-platform
+    runtime: docker
+    plan: starter
+    healthCheckPath: /api/health
+    disk:
+      name: fieldnote-data
+      mountPath: /app/data
+      sizeGB: 1
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: ADMIN_USERNAME
+        value: admin
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: SITE_URL
+        sync: false
